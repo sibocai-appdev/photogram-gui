@@ -18,7 +18,8 @@ class LikesController < ApplicationController
     like.photo_id = params.fetch(:input_photo_id, nil)
     like.save
     
-    render({ :json => like.as_json })
+    #render({ :json => like.as_json })
+    redirect_to("/photos/#{like.photo_id}")
   end
 
   def update

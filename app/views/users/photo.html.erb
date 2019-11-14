@@ -1,0 +1,78 @@
+<a href="/users">All Users</a>
+<div>
+<a href="/photos"> All Photos</a>
+</div>
+
+<h1>List of photos</h1>
+
+<form action="/insert_photo_record">
+  <label for="image_box">Image</label>
+  <input id="image_box" name="input_image" placeholder="Enter a URL for the image...">
+
+  <label for="caption">Caption</label>
+  <textarea id="caption" name="input_caption" placeholder="Enter a caption for the photo..."></textarea>
+
+  <label for="owner_box">Owner ID</label>
+  <input id="owner_box" name="input_owner_id">
+
+  <button>Add photo</button>
+</form>
+
+<table border="1">
+  <tr>
+    <th>
+    Image
+    </th>
+
+    <th>
+    Caption
+    </th>
+
+    <th>
+    Owner
+    </th>
+
+    <th>
+    Posted
+    </th>
+
+    <th>
+    Likes
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @photos.each do |photo| %>
+    <tr>
+      <td>
+        <img width="100" src="<%=photo.image %>">
+      </td>
+
+      <td>
+        <%=photo.caption%>
+      </td>
+
+      <td>
+        <%=photo.poster.username%>
+      </td>
+
+      <td>
+       <%=time_ago_in_words(photo.created_at)%>
+      </td>
+
+      <td>
+        <%=photo.likes.count%>
+      </td>
+
+      <td>
+        <a href="/photos/<%=photo.id%>">
+          Show details
+        </a>
+      </td>
+
+    </tr>
+  <% end %>
+
+</table>

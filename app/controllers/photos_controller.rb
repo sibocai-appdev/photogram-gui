@@ -1,15 +1,17 @@
 class PhotosController < ApplicationController
   def index
-    photos = Photo.all.order({ :owner_id => :asc })
+    @photos = Photo.all.order({ :owner_id => :asc })
 
-    render({ :json => photos.as_json })
+    #render({ :json => photos.as_json })
+    render({ :template => "users/photo.html.erb"})
   end
 
   def show
     the_id = params.fetch(:the_photo_id)
-    photo = Photo.where({ :id => the_id }).at(0)
+    @photo = Photo.where({ :id => the_id }).at(0)
 
-    render({ :json => photo.as_json })
+    #render({ :json => photo.as_json })
+    render({ :template => "users/photos_id.html.erb"})
   end
 
   def create
@@ -23,7 +25,8 @@ class PhotosController < ApplicationController
     
     photo.save
 
-    render({ :json => photo.as_json })
+    #render({ :json => photo.as_json })
+    redirect_to("/photos/#{photo.id}")
   end
 
   def update
@@ -39,7 +42,8 @@ class PhotosController < ApplicationController
     
     photo.save
 
-    render({ :json => photo.as_json })
+    #render({ :json => photo.as_json })
+    redirect_to("/photos/#{photo.id}")
   end
 
   def destroy
@@ -48,7 +52,8 @@ class PhotosController < ApplicationController
 
     photo.destroy
 
-    render({ :json => photo.as_json })
+    #render({ :json => photo.as_json })
+    redirect_to("/photos")
   end
  
   def comments

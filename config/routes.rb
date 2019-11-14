@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match("/insert_user_record", {:controller => "users", :action => "create", :via => "get"})
 
   # READ
+   match("/", {:controller => "users", :action => "index", :via => "get"})
   match("/users", {:controller => "users", :action => "index", :via => "get"})
   match("/users/:the_username", {:controller => "users", :action => "show", :via => "get"})
   match("/users/:the_username/own_photos", {:controller => "users", :action => "own_photos", :via => "get"})

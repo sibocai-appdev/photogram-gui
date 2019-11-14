@@ -12,12 +12,12 @@
 <dt>Following</dt>
   <%=@user.following.count%>
 <dt>Edit user</dt>
-<form action="/update_user/:the_user_id">
+<form action="/update_user/<%=@user.id%>">
   <label for="username_box">Username</label>
-  <input id="username_box" name="username" value=<%=@user.username%>>
+  <input id="username_box" name="input_username" value=<%=@user.username%>>
 
   <label for="private">Private?</label>
-  <input id="private" name="private" type="checkbox">
+  <input id="private" name="input_private" type="checkbox">
 
   <button>Update user</button>
 </form>
@@ -66,7 +66,30 @@ Discover
     <th>
     Likes
     </th>
-
   </tr>
+
+  <% @user.own_photos.each do |photo| %>
+    <tr>
+      <td>
+        <img width="100" src="<%=photo.image %>">
+      </td>
+
+      <td>
+        <%=photo.poster.username%>
+      </td>
+
+      <td>
+        <%=photo.caption%>
+      </td>
+
+      <td>
+       <%=time_ago_in_words(photo.created_at)%>
+      </td>
+
+      <td>
+        <%=photo.likes.count%>
+      </td>
+    </tr>
+  <% end %>
 
 </table>
