@@ -1,0 +1,89 @@
+<a href="/users">All Users</a>
+<div>
+<a href="/photos"> All Photos</a>
+</div>
+
+<h1> <%= @user.username %> </h1>
+
+<dt>Private</dt>
+  <%=@user.private%>
+<dt>Followers</dt>
+  <%=@user.followers.count%>
+<dt>Following</dt>
+  <%=@user.following.count%>
+
+<div>
+<a href="/users/<%= @user.username%>">
+Profile
+</a>
+</div>
+
+<div>
+<a href="/users/<%= @user.username%>/liked_photos">
+Liked photos
+</a>
+</div>
+
+<div>
+<a href="/users/<%= @user.username%>/feed">
+Feed
+</a>
+</div>
+
+<div>
+<a href="/users/<%= @user.username%>/discover">
+Discover
+</a>
+</div>
+
+<h1>Liked photos (<%=@user.liked_photos.count%>) <h1>
+
+<table border="1">
+  <tr>
+    <th>
+    Image
+    </th>
+
+    <th>
+    Owner
+    </th>
+
+    <th>
+    Caption
+    </th>
+
+    <th>
+    Posted
+    </th>
+
+    <th>
+    Likes
+    </th>
+
+  </tr>
+
+  <% @user.liked_photos.each do |photo| %>
+    <tr>
+      <td>
+        <img width="100" src="<%=photo.image %>">
+      </td>
+
+      <td>
+        <%=photo.owner_id%>
+      </td>
+
+      <td>
+        <%=photo.caption%>
+      </td>
+
+      <td>
+      </td>
+
+      <td>
+        <%=photo.likes.count%>
+      </td>
+
+    </tr>
+  <% end %>
+
+</table>

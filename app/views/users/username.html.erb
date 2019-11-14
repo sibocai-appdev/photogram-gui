@@ -1,0 +1,72 @@
+<a href="/users">All Users</a>
+<div>
+<a href="/photos"> All Photos</a>
+</div>
+
+<h1> <%= @user.username %> </h1>
+
+<dt>Private</dt>
+  <%=@user.private%>
+<dt>Followers</dt>
+  <%=@user.followers.count%>
+<dt>Following</dt>
+  <%=@user.following.count%>
+<dt>Edit user</dt>
+<form action="/update_user/:the_user_id">
+  <label for="username_box">Username</label>
+  <input id="username_box" name="username" value=<%=@user.username%>>
+
+  <label for="private">Private?</label>
+  <input id="private" name="private" type="checkbox">
+
+  <button>Update user</button>
+</form>
+
+<a href="/users/<%= @user.username%>">
+Profile
+</a>
+<div>
+<a href="/users/<%= @user.username%>/liked_photos">
+Liked photos
+</a>
+</div>
+
+<div>
+<a href="/users/<%= @user.username%>/feed">
+Feed
+</a>
+</div>
+
+<div>
+<a href="/users/<%= @user.username%>/discover">
+Discover
+</a>
+</div>
+
+<h1>Own photos (<%=@user.own_photos.count%>) <h1>
+
+<table border="1">
+  <tr>
+    <th>
+    Image
+    </th>
+
+    <th>
+    Owner
+    </th>
+
+    <th>
+    Caption
+    </th>
+
+    <th>
+    Posted
+    </th>
+
+    <th>
+    Likes
+    </th>
+
+  </tr>
+
+</table>

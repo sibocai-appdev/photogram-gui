@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     the_username = params.fetch(:the_username)
     @user = User.where({ :username => the_username }).at(0)
   
-    render({ :json => @user.as_json })
+    #render({ :json => @user.as_json })
+    render({ :template => "users/username.html.erb"})
   end
   
   def create
@@ -54,7 +55,8 @@ class UsersController < ApplicationController
   def liked_photos
     username = params.fetch(:the_username)
     @user = User.where({ :username => username }).at(0)
-    render({ :json => @user.liked_photos.as_json })
+    #render({ :json => @user.liked_photos.as_json })
+    render({ :template => "users/liked_photos.html.erb"})
   end
   
   def own_photos
